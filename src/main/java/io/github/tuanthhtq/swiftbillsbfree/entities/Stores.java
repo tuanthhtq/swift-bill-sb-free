@@ -28,6 +28,10 @@ public class Stores {
 	@Column(nullable = false, length = Length.NAME, name = "name")
 	private String storeName;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "owner_id")
+	private Users owner;
+
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(
 			name = "rel_store_employee",

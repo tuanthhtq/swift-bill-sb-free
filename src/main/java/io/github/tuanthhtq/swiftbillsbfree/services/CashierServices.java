@@ -52,8 +52,7 @@ public interface CashierServices {
 	 * Search for receipt base on criteria
 	 *
 	 * @param request       {@link ReceiptSearchCriteria}
-	 * @param bindingResult fields validation result
 	 * @return List of {@link ReceiptInfo}
 	 */
-	Response<List<ReceiptInfo>> searchReceipts(ReceiptSearchCriteria request, BindingResult bindingResult);
+	Response<List<ReceiptInfo>> searchReceipts(ReceiptSearchCriteria request);
 }

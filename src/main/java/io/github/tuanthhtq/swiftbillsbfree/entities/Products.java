@@ -76,13 +76,8 @@ public class Products {
 	@JoinColumn(name = "supplier_id")
 	private Suppliers supplier;
 
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(
-			name = "rel_receipt_product",
-			inverseJoinColumns = @JoinColumn(name = "receipt_id"),
-			joinColumns = @JoinColumn(name = "product_id")
-	)
-	private Set<Receipts> receipts;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product", cascade = CascadeType.ALL)
+	private Set<ReceiptProducts> receipts;
 
 	@CreationTimestamp
 	private Instant createdDate;

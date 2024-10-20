@@ -2,7 +2,6 @@ package io.github.tuanthhtq.swiftbillsbfree.entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -12,7 +11,6 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 @Table(name = "rel_receipt_product")
 public class ReceiptProducts {
 
@@ -29,7 +27,7 @@ public class ReceiptProducts {
 	@JoinColumn(name = "receipt_id")
 	private Receipts receipt;
 
-	private float amount;
+	private float quantity;
 
 	private float unitPrice;
 

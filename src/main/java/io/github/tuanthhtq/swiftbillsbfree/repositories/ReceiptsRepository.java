@@ -10,7 +10,12 @@ import java.util.Optional;
 
 public interface ReceiptsRepository extends JpaRepository<Receipts, Long> {
 
+
 	List<Receipts> findByCreatedDateBetween(Instant start, Instant end, Pageable pageable);
+
+	List<Receipts> findByCreatedDateAfter(Instant start, Pageable pageable);
+
+	List<Receipts> findByCreatedDateBefore(Instant start, Pageable pageable);
 
 	List<Receipts> findByCustomerName(String customerName, Pageable pageable);
 

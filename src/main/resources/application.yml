@@ -25,3 +25,4 @@ app:
   request-prefix: /api/v1
   basic-qrcode-base-url: https://api.vietqr.io/image/
   basic-qrcode-template-id: 20jhRcP
+  default-page-size: 20

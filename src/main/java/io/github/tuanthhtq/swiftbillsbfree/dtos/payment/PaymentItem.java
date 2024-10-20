@@ -7,7 +7,7 @@ package io.github.tuanthhtq.swiftbillsbfree.dtos.payment;
 public record PaymentItem(
 		//common for request and response
 		String barcode,
-		float amount,
+		float quantity,
 
 		//for response
 		String productName,

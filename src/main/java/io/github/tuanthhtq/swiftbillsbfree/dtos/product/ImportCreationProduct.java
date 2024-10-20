@@ -42,7 +42,7 @@ public record ImportCreationProduct(
 		List<String> imageUrls,
 
 		@Valid
-		SimpleIdNameDto category
+		List<SimpleIdNameDto> categories
 
 ) {
 }

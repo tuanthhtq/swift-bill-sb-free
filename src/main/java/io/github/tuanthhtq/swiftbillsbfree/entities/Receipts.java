@@ -50,8 +50,8 @@ public class Receipts {
 	@JoinColumn(name = "bank_id")
 	private BankAccounts bank;
 
-	@OneToMany(mappedBy = "receipt")
-	private Set<Products> items;
+	@OneToMany(mappedBy = "receipt", cascade = CascadeType.ALL)
+	private Set<ReceiptProducts> items;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "store_id")

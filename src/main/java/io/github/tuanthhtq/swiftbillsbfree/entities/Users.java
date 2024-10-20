@@ -50,6 +50,9 @@ public class Users {
 	)
 	private Set<Stores> stores;
 
+	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
+	private Set<Stores> ownedStores;
+
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
 			name = "rel_user_roles",
