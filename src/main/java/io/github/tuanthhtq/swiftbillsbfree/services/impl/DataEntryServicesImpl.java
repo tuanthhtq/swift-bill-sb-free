@@ -60,7 +60,7 @@ public class DataEntryServicesImpl extends CommonConcrete implements DataEntrySe
 
 		response.setMessage("Failed to import data");
 
-		try{
+		try {
 			float estCost = 0;
 			float estIncome = 0;
 
@@ -93,13 +93,12 @@ public class DataEntryServicesImpl extends CommonConcrete implements DataEntrySe
 							.collect(Collectors.toSet());
 
 					//extract categories
-					for (ImportCreationProduct prod: request.products()){	//iterate through product list
-
+					Set<SimpleIdNameDto> categoryNames = new HashSet<>();
+					for (ImportCreationProduct prod : request.products()) {    //iterate through product list
+						for (SimpleIdNameDto cat : prod.categories()) {
+							categoryNames.add(new SimpleIdNameDto(cat.id(), cat.name()));
+						}
 					}
-
-					Set<SimpleIdNameDto> categoryNames = request.products().stream()
-							.map(p -> )
-							.collect(Collectors.toSet());
 
 					Set<SimpleIdNameDto> unitNames = request.products().stream()
 							.map(p -> new SimpleIdNameDto(
@@ -130,10 +129,9 @@ public class DataEntryServicesImpl extends CommonConcrete implements DataEntrySe
 								.findFirst()
 								.orElse(null);
 						//get category
-						Categories c = categories.stream()
+						Set<Categories> cs = categories.stream()
 								.filter(i -> i.getName().equals(p.brand().name()))
-								.findFirst()
-								.orElse(null);
+								.collect(Collectors.toSet());
 						//get measure unit
 						MeasureUnit m = units.stream()
 								.filter(i -> i.getName().equals(p.brand().name()))
@@ -157,7 +155,7 @@ public class DataEntryServicesImpl extends CommonConcrete implements DataEntrySe
 									p.amount(),
 									m,
 									p.barcode(),
-									c,
+									cs,
 									supplier,
 									p.imageUrls().stream().map(Images::new).collect(Collectors.toSet()),
 									b
@@ -183,7 +181,7 @@ public class DataEntryServicesImpl extends CommonConcrete implements DataEntrySe
 				}
 			}
 			return response;
-		}catch (Exception e){
+		} catch (Exception e) {
 			System.out.println(e.getLocalizedMessage());
 			errors.add("Invalid request");
 			response.setErrors(errors);
